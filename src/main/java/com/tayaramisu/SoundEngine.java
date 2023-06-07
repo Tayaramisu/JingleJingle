@@ -63,14 +63,13 @@ public class SoundEngine {
             }
         }
 
-        // User configurable volume
+        int lastMusicVolume = client.getMusicVolume();
         FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        float gain = 20f * (float) Math.log10(config.jingleVolume() / 100f) - 0.07f;
+        float gain = 20f * (float) Math.log10(lastMusicVolume / 100f) - 0.07f;
         gain = Math.min(gain, volume.getMaximum());
         gain = Math.max(gain, volume.getMinimum());
         volume.setValue(gain);
 
-        int lastMusicVolume = client.getMusicVolume();
         client.setMusicVolume(0);
         clip.addLineListener(e -> {
             if (e.getType() == LineEvent.Type.STOP) {

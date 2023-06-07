@@ -77,10 +77,10 @@ public class JingleJinglePlugin extends Plugin {
 
 
     private static final Pattern COLLECTION_LOG_ITEM_REGEX = Pattern.compile("New item added to your collection log:.*");
-    private static final Pattern COMBAT_TASK_REGEX = Pattern.compile("Congratulations, you've completed an? (?:\\w+) combat task:.*");
-    private static final Pattern MAHOMES_PATTERN = Pattern.compile("You have completed <col=ff0000>(\\d+)</col> contracts with a total of <col=ff0000>(\\d+)</col> points\\.");
-    private static final Pattern FARMING_CONTRACT_PATTERN = Pattern.compile("You've completed a Farming Guild contract. You should return to Guildemaster Jane\\.");
-    private static final Pattern ACHIEVEMENT_DIARY_TASK_PATTERN = Pattern.compile("<col=ff0000>Well done! You've completed an? (?:\\\\w+) task in the (?:\\\\w+) area\\. Your Achievement Diary has been updated\\.</col>");
+    private static final Pattern COMBAT_TASK_REGEX = Pattern.compile("Congratulations, you've completed an? .* combat task:.*");
+    private static final Pattern MAHOMES_PATTERN = Pattern.compile("You have completed .* contracts with a total of .* points\\.");
+    private static final Pattern FARMING_CONTRACT_PATTERN = Pattern.compile("You've completed a Farming Guild contract. You should return to Guildmaster Jane\\.");
+    private static final Pattern ACHIEVEMENT_DIARY_TASK_PATTERN = Pattern.compile("<col=dc143c>Well done! You have completed an? (\\w+) task in the (\\w+) area\\. Your Achievement Diary has been updated\\.</col>");
 
     private static final Set<Integer> badCollectionLogNotificationSettingValues = new HashSet<Integer>() {{
         add(0);
@@ -159,29 +159,29 @@ public class JingleJinglePlugin extends Plugin {
         } else {
             Matcher m = ACHIEVEMENT_DIARY_TASK_PATTERN.matcher(chatMessage.getMessage());
             if(m.matches()) {
-                if (m.group(1).equals("Ardougne") && config.playArdougneDiary()) {
+                if (m.group(2).equals("Ardougne") && config.playArdougneDiary()) {
                     soundEngine.playClip(config.ardougneTaskJingle());
-                } else if (m.group(1).equals("Desert") && config.playDesertDiary()) {
+                } else if (m.group(2).equals("Desert") && config.playDesertDiary()) {
                     soundEngine.playClip(config.desertTaskJingle());
-                } else if (m.group(1).equals("Falador") && config.playFaladorDiary()) {
+                } else if (m.group(2).equals("Falador") && config.playFaladorDiary()) {
                     soundEngine.playClip(config.desertTaskJingle());
-                } else if (m.group(1).equals("Fremennik") && config.playFremennikDiary()) {
+                } else if (m.group(2).equals("Fremennik") && config.playFremennikDiary()) {
                     soundEngine.playClip(config.fremennikTaskJingle());
-                } else if (m.group(1).equals("Kandarin") && config.playKandarinDiary()) {
+                } else if (m.group(2).equals("Kandarin") && config.playKandarinDiary()) {
                     soundEngine.playClip(config.kandarinTaskJingle());
-                } else if (m.group(1).equals("Karamja") && config.playKaramjaDiary()) {
+                } else if (m.group(2).equals("Karamja") && config.playKaramjaDiary()) {
                     soundEngine.playClip(config.karamjaTaskJingle());
-                } else if (m.group(1).equals("Kourend & Kebos") && config.playKourendDiary()) {
+                } else if (m.group(2).equals("Kourend & Kebos") && config.playKourendDiary()) {
                     soundEngine.playClip(config.kourendTaskJingle());
-                } else if (m.group(1).equals("Lumbridge & Draynor") && config.playLumbridgeDiary()) {
+                } else if (m.group(2).equals("Lumbridge & Draynor") && config.playLumbridgeDiary()) {
                     soundEngine.playClip(config.lumbridgeTaskJingle());
-                } else if (m.group(1).equals("Morytania") && config.playMorytaniaDiary()) {
+                } else if (m.group(2).equals("Morytania") && config.playMorytaniaDiary()) {
                     soundEngine.playClip(config.morytaniaTaskJingle());
-                } else if (m.group(1).equals("Varrock") && config.playVarrockDiary()) {
+                } else if (m.group(2).equals("Varrock") && config.playVarrockDiary()) {
                     soundEngine.playClip(config.varrockTaskJingle());
-                } else if (m.group(1).equals("Western Provinces") && config.playWesternProvincesDiary()) {
+                } else if (m.group(2).equals("Western Provinces") && config.playWesternProvincesDiary()) {
                     soundEngine.playClip(config.westernProvincesTaskJingle());
-                } else if (m.group(1).equals("Wilderness") && config.playWildernessDiary()) {
+                } else if (m.group(2).equals("Wilderness") && config.playWildernessDiary()) {
                     soundEngine.playClip(config.wildernessTaskJingle());
                 }
             }
