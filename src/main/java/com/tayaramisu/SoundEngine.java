@@ -37,7 +37,7 @@ public class SoundEngine {
             }
             return true;
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            log.warn("Failed to load sound " + sound, e);
+            log.warn("Failed to load jingle " + sound, e);
         }
         return false;
     }
@@ -53,7 +53,7 @@ public class SoundEngine {
                 clip = AudioSystem.getClip();
             } catch (LineUnavailableException e) {
                 lastClipMTime = CLIP_MTIME_UNLOADED;
-                log.warn("Failed to get clip for sound " + sound, e);
+                log.warn("Failed to get clip for jingle " + sound, e);
                 return;
             }
 

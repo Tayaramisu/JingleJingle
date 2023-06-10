@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public abstract class SoundFileManager {
 
-    private static final File DOWNLOAD_DIR = new File(RuneLite.RUNELITE_DIR.getPath() + File.separator + "more-sounds-and-jingles");
+    private static final File DOWNLOAD_DIR = new File(RuneLite.RUNELITE_DIR.getPath() + File.separator + "jingle-jingle");
     private static final String DELETE_WARNING_FILENAME = "EXTRA_FILES_WILL_BE_DELETED_BUT_FOLDERS_WILL_REMAIN";
     private static final File DELETE_WARNING_FILE = new File(DOWNLOAD_DIR, DELETE_WARNING_FILENAME);
     private static final HttpUrl RAW_GITHUB = HttpUrl.parse("https://raw.githubusercontent.com/Tayaramisu/JingleJingle/sounds");
@@ -46,10 +46,10 @@ public abstract class SoundFileManager {
     }
 
     public static void downloadAllMissingSounds(final OkHttpClient okHttpClient) {
-        // Get set of existing files in our dir - existing sounds will be skipped, unexpected files (not dirs, some sounds depending on config) will be deleted
+        // Get set of existing files in our dir - existing jingles will be skipped, unexpected files (not dirs, some sounds depending on config) will be deleted
         Set<String> filesPresent = getFilesPresent();
 
-        // Download any sounds that are not yet present but desired
+        // Download any jingles that are not yet present but desired
         for (Sound sound : Sound.values()) {
             String fileNameToDownload = sound.getResourceName();
             if (filesPresent.contains(fileNameToDownload)) {
@@ -59,7 +59,7 @@ public abstract class SoundFileManager {
 
             if (RAW_GITHUB == null) {
                 // Hush intellij, it's okay, the potential NPE can't hurt you now
-                log.error("More Sounds and Jingles could not download sounds due to an unexpected null RAW_GITHUB value");
+                log.error("Jingle Jingle could not download jingles due to an unexpected null RAW_GITHUB value");
                 return;
             }
             HttpUrl soundUrl = RAW_GITHUB.newBuilder().addPathSegment(fileNameToDownload).build();
@@ -68,13 +68,13 @@ public abstract class SoundFileManager {
                 if (res.body() != null)
                     Files.copy(new BufferedInputStream(res.body().byteStream()), outputPath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                log.error("More Sounds and Jingles could not download sounds", e);
+                log.error("Jingle Jingle could not download jingles", e);
                 return;
             }
         }
 
         // filesPresent now contains only files in our directory that weren't desired
-        // (e.g. old versions of sounds, streamer trolls if setting was toggled)
+        // (e.g. old versions of jingles)
         // We now delete them to avoid cluttering up disk space
         // We leave dirs behind (getFilesPresent ignores dirs) as we aren't creating those anyway, so they won't build up over time
         for (String filename : filesPresent) {

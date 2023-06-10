@@ -8,7 +8,7 @@ import net.runelite.client.config.*;
 
 @ConfigGroup(JingleJingleConfig.GROUP)
 public interface JingleJingleConfig extends Config {
-    String GROUP = "soundsandjingles";
+    String GROUP = "jingles";
 
     /**
      * ░██████╗░███████╗███╗░░██╗███████╗██████╗░░█████╗░██╗░░░░░
@@ -23,7 +23,7 @@ public interface JingleJingleConfig extends Config {
     @ConfigItem(
             keyName = "jingleVolume",
             name = "Jingle volume",
-            description = "How loud this plugin's sounds & jingles are played",
+            description = "How loud this plugin's jingles are played",
             position = 0
     )
     default int jingleVolume() {
@@ -296,7 +296,7 @@ public interface JingleJingleConfig extends Config {
             section = "achievementDiarySettings"
     )
     default boolean playKaramjaDiary() {
-        return false; // Karamja already has sounds, so don't override them by default
+        return false; // Karamja already has jingles, so don't override them by default
     }
     @ConfigItem(
             keyName = "karamjaTaskJingle",
