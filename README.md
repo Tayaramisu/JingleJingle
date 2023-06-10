@@ -1,4 +1,4 @@
-# More Sounds and Jingles
+# Jingle Jingle
 
 ##### A plugin for [RuneLite](https://runelite.net/)
 
