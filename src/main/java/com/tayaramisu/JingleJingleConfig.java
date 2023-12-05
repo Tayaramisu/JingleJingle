@@ -107,7 +107,7 @@ public interface JingleJingleConfig extends Config {
             position = 8
     )
     default Sound farmingContractJingle() {
-        return Sound.CACTI_CHECK;
+        return Sound.POSTIE_PETE_THEME;
     }
 
     /**
