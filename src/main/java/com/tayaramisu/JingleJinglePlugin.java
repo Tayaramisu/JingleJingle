@@ -148,13 +148,13 @@ public class JingleJinglePlugin extends Plugin {
             return;
         }
 
-        if (COLLECTION_LOG_ITEM_REGEX.matcher(chatMessage.getMessage()).matches()) {
+        if (COLLECTION_LOG_ITEM_REGEX.matcher(chatMessage.getMessage()).matches() && config.playCollectionLog()) {
             soundEngine.playClip(config.collectionLogJingle());
-        } else if (COMBAT_TASK_REGEX.matcher(chatMessage.getMessage()).matches()) {
+        } else if (COMBAT_TASK_REGEX.matcher(chatMessage.getMessage()).matches() && config.playCombatTask()) {
             soundEngine.playClip(config.combatTaskJingle());
-        } else if (MAHOMES_PATTERN.matcher(chatMessage.getMessage()).matches()) {
+        } else if (MAHOMES_PATTERN.matcher(chatMessage.getMessage()).matches() && config.playMahomes()) {
             soundEngine.playClip(config.mahomesJingle());
-        } else if (FARMING_CONTRACT_PATTERN.matcher(chatMessage.getMessage()).matches()) {
+        } else if (FARMING_CONTRACT_PATTERN.matcher(chatMessage.getMessage()).matches() && config.playFarmingContract()) {
             soundEngine.playClip(config.farmingContractJingle());
         } else {
             Matcher m = ACHIEVEMENT_DIARY_TASK_PATTERN.matcher(chatMessage.getMessage());
@@ -164,7 +164,7 @@ public class JingleJinglePlugin extends Plugin {
                 } else if (m.group(2).equals("Desert") && config.playDesertDiary()) {
                     soundEngine.playClip(config.desertTaskJingle());
                 } else if (m.group(2).equals("Falador") && config.playFaladorDiary()) {
-                    soundEngine.playClip(config.desertTaskJingle());
+                    soundEngine.playClip(config.faladorTaskJingle());
                 } else if (m.group(2).equals("Fremennik") && config.playFremennikDiary()) {
                     soundEngine.playClip(config.fremennikTaskJingle());
                 } else if (m.group(2).equals("Kandarin") && config.playKandarinDiary()) {
