@@ -80,7 +80,7 @@ public class JingleJinglePlugin extends Plugin {
     private static final Pattern COMBAT_TASK_REGEX = Pattern.compile("Congratulations, you've completed an? .* combat task:.*");
     private static final Pattern MAHOMES_PATTERN = Pattern.compile("You have completed .* contracts with a total of .* points\\.");
     private static final Pattern FARMING_CONTRACT_PATTERN = Pattern.compile("You've completed a Farming Guild Contract. You should return to Guildmaster Jane\\.");
-    private static final Pattern ACHIEVEMENT_DIARY_TASK_PATTERN = Pattern.compile("<col=dc143c>Well done! You have completed an? (\\w+) task in the (\\w+) area\\. Your Achievement Diary has been updated\\.</col>");
+    private static final Pattern ACHIEVEMENT_DIARY_TASK_PATTERN = Pattern.compile("<col=dc143c>Well done! You have completed an? (\\w+) task in the (.+) area\\. Your Achievement Diary has been updated\\.</col>");
 
     private static final Set<Integer> badCollectionLogNotificationSettingValues = new HashSet<Integer>() {{
         add(0);
@@ -144,7 +144,7 @@ public class JingleJinglePlugin extends Plugin {
 
     @Subscribe
     public void onChatMessage(ChatMessage chatMessage) {
-        if (chatMessage.getType() != ChatMessageType.GAMEMESSAGE && chatMessage.getType() != ChatMessageType.SPAM) {
+        if (chatMessage.getType() != ChatMessageType.GAMEMESSAGE) {
             return;
         }
 
